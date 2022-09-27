@@ -1,8 +1,4 @@
-
-m = True
-
-while m:
- if m:
+while True:
    a = input("Введите ваше имя: ")
    b = input("Введите ваш возраст: ")
    while not b.isdigit() or int(b) <= 0:
@@ -17,9 +13,5 @@ while m:
    elif ( int(b) > 100 ):
       print(a, ",вы лжете - в наше время столько не живут...")
    k = input("Желаете выйти? (Д/Y):")
-   if k.lower() == "y":
-      m = False
-   elif k.lower() == "д":
-      m = False
-   elif not k == "Y" or "y" or "Д" or "д":
-      m = True
+   if k.lower() == "y" or k.lower() == "д":
+      break
