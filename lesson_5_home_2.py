@@ -1,28 +1,33 @@
 
-n = input("(Цикл for)Введите целое число: ")
+while True:
+    n = input("Введите целое число: ")
+    if n.isdigit():
+        n = int(n)
+        break
+    else:
+        print("Вы ввели не целое число")
 
-while not n.isdigit():
-   print("Вы ввели не целое число")
-   n = input("Введите целое число: ")
+cycle = input("Выберите цикл For(f)/While(w): ")
 
-n = int(n)
+while True:
+    cycle = cycle.lower()
+    if cycle == "f" or cycle == "w":
+        break
+    else:
+        cycle = input("Выберите цикл For(f)/While(w): ")
 
-for i in range(1, n+1):
-   if i % 3 == 0:
-      i = 0
-   else:
-      print(i**2)
-
-n = input("(Цикл While)Введите целое число: ")
-
-while not n.isdigit():
-   print("Вы ввели не целое число")
-   n = input("Введите целое число: ")
-
-n = int(n)
+listt = [0]
 k = 1
 
-while k in range(1, n+1):
-   if not k % 3 == 0:
-      print(k**2)
-   k = k + 1
+if cycle == "w":
+    while k in range(1, n + 1):
+        if not k % 3 == 0:
+            listt.append(k**3)
+        k = k + 1
+    print(sum(listt))
+
+if cycle == "f":
+    for k in range(1, n + 1):
+        if not k % 3 == 0:
+            listt.append(k ** 3)
+    print(sum(listt))
