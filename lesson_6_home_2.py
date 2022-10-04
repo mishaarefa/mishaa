@@ -5,7 +5,7 @@ import random
 def guess(namber):
     while True:
         namber = input("Угадайте число от 1 до 5: ")
-        if namber == namber.isdigit() and namber == "1" or namber == "2" or namber == "3" or namber == "4" or namber == "5":
+        if namber.isdigit() and (1 <= namber <= 5):
             break
         else:
             print("Неправильное число")
@@ -13,7 +13,7 @@ def guess(namber):
 
 while True:
     a = random.randint(1, 5)
-    if a == guess(namber=a):
+    if a == guess():
         print("Вы угадали число")
         break
     else:
