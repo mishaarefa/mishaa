@@ -4,22 +4,13 @@
 # а значение - сколько раз оно встречается). Для проверки нахождения элемента
 # в словаре использовать метод get(), либо оператор in.
 
-list0 = [6, 2, 1, 1, 2, 6, 8, 9, 3]
+list1 = [1, 2, 1, 1, 2, 6, 8, 9, 3]
 
-list1 = []
-list2 = []
-m = -1
+def do(li):
+    list2 = {}
+    for a in li:
+        if not li[a] in list2:
+            list2[li[a]] = li.count(li[a])
+    return list2
 
-for i in list0:
-    m = m + 1
-    list1.append((list0[m]))
-    list2.append((list0.count(list0[m])))
-    for b in range(1, list0.count(list0[m])):
-        list0.remove(list0[m])
-
-list1 = tuple(list1)    # ключи
-list2 = tuple(list2)    # значения
-
-
-print(list1)
-print(list2)
+print(do(list1))
