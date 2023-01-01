@@ -4,6 +4,8 @@ def func(val):
     val = val.replace(",", ".")
     if not val.replace("-", "", 1).replace(".", "", 1).strip().isdigit():
         ret = "Вы ввели не корректное число: " + val
+    elif val.strip() == "0":
+        ret = "Вы ввели ноль"
     else:
         if "-" in val:
             ret = "Вы ввели отрицательное "
