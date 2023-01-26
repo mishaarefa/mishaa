@@ -5,11 +5,11 @@
 #  Высылаю пример как должно выглядеть содержания итогового файла.\
 
 
-import openpyxl
+# import openpyxl
 import csv
 
 
-with open("names.csv") as f:
+with open("names.csv", encoding='utf-8') as f:
     reader = csv.reader(f)
     data = list(reader)
 f.close()
@@ -18,6 +18,6 @@ for x in data:
     if x[0] == "age":
         data.remove(x)
 
-print data
+print(data)
 
 # with open("names.csv", encoding="utf-8") as f
