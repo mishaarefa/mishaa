@@ -1,13 +1,6 @@
-# -*- coding: utf-8 -*-
-#  Прочитать сохранённый csv-файл из задания №2
-#  и сохранить данные в excel-файл,
-#  кроме возраста – столбец с этими данными не нужен.
-#  Высылаю пример как должно выглядеть содержания итогового файла.\
 
-
-# import openpyxl
+import openpyxl
 import csv
-
 
 with open("names.csv", encoding='utf-8') as f:
     reader = csv.reader(f)
@@ -18,6 +11,12 @@ for x in data:
     if x[0] == "age":
         data.remove(x)
 
-print(data)
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
 
-# with open("names.csv", encoding="utf-8") as f
+for x in data:
+    for y in x:
+        cell = sheet.cell(row=int(data.index(x))+1, column=int(x.index(y))+1)
+        cell.value = y
+
+wb.save("Names1.xlsx")
