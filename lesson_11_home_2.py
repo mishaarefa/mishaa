@@ -22,10 +22,11 @@ for x in range(0, 10):
     list1.append(x)
 
 for x in range(len(persons)):
-    r = "+38" + random.choice(operators)
-    for y in range(7):
-        r += str(random.choice(list1))
-    persons[x].append(r)
+    if int(random.choice(list1)) > 2:
+        r = "+38" + random.choice(operators)
+        for y in range(7):
+            r += str(random.choice(list1))
+        persons[x].append(r)
 
 with open('names.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
