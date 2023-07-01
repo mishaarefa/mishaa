@@ -15,7 +15,7 @@ import time
 
 class Auto(object):
 
-    def __init__(self, brand, age, mark, weight = 2300, color = "Red"):
+    def __init__(self, brand, age, mark, weight=2300, color="Red"):
         self.brand = brand
         self.age = age
         self.mark = mark
