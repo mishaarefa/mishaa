@@ -14,16 +14,13 @@ import time
 
 
 class Auto(object):
-    brand = "Volkswagen"
-    age = 7
-    color = "Red"
-    mark = "Volkswagen"
-    weight = 2300
 
-    def __init__(self, brand, age, mark):
+    def __init__(self, brand, age, mark, weight = 2300, color = "Red"):
         self.brand = brand
         self.age = age
         self.mark = mark
+        self.color = color
+        self.weight = weight
 
     def move(self):
         return print("move")
