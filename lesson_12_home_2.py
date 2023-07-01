@@ -12,6 +12,7 @@
 
 import time
 
+
 class Auto(object):
     brand = "Volkswagen"
     age = 7
@@ -40,7 +41,8 @@ class Truck(Auto):
         self.max_load = max_load
 
     def move(self):
-        return print("Attention"), super().move()
+        print("Attention")
+        super().move()
 
     def load(self):
         time.sleep(1)
@@ -54,4 +56,5 @@ class Car(Auto):
         self.max_speed = max_speed
 
     def move(self):
-        return super().move(), print("Max speed is ", self.max_speed)
+        super().move()
+        print("Max speed is ", self.max_speed)

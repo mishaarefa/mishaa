@@ -6,22 +6,19 @@
 # Атрибуты brand, age и mark являются обязательными при объявлении объекта.
 
 class Auto(object):
-    brand = "Volkswagen"
-    age = 7
-    color = "Red"
-    mark = "Volkswagen"
-    weight = 2300
 
-    def __init__(self, brand, age, mark):
+    def __init__(self, brand, age, mark, color="red", weight=2300):
         self.brand = brand
         self.age = age
         self.mark = mark
+        self.color = color
+        self.weight = weight
 
     def move(self):
-        return print("move")
+        print("move")
 
     def stop(self):
-        return print("stop")
+        print("stop")
 
     def birthday(self):
         self.age += 1
