@@ -73,8 +73,8 @@ import unittest
 class TestDelenie(unittest.TestCase):
 
     def test_delenie(self):
-        self.assertEqual(Calculator.stepen(6, 2), 3)
-        self.assertNotEqual(Calculator.stepen(2, 2), 0)
+        self.assertEqual(Calculator.delenie(6, 2), 3)
+        self.assertNotEqual(Calculator.delenie(2, 2), 0)
 
     def test_plus(self):
         self.assertEqual(Calculator.plus(6, 2), 8)
