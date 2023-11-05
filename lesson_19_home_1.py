@@ -3,78 +3,75 @@ import tkinter
 
 window = tkinter.Tk()
 window.title("Введите домашний адресс")
+window.columnconfigure(1)
+window.geometry("400x200")
 
-frame_1 = tkinter.Frame()
-frame_2 = tkinter.Frame()
-frame_3 = tkinter.Frame()
-frame_4 = tkinter.Frame()
-frame_5 = tkinter.Frame()
-frame_6 = tkinter.Frame()
-frame_7 = tkinter.Frame()
-frame_8 = tkinter.Frame()
-frame_9 = tkinter.Frame()
+frame_1 = tkinter.Frame()   # label
+frame_2 = tkinter.Frame()   # enter
+frame_3 = tkinter.Frame()   # button
 
-ent_name = tkinter.Entry(master=frame_1, width=20)
+ent_name = tkinter.Entry(master=frame_2)
 lbl_name = tkinter.Label(master=frame_1, text="Имя:")
-ent_name.pack(side=tkinter.RIGHT)
-lbl_name.pack()
-frame_1.pack()
+ent_name.pack(anchor="w")
+lbl_name.pack(anchor="e")
 
-ent_surname = tkinter.Entry(master=frame_8, width=20)
-lbl_surname = tkinter.Label(master=frame_8, text="Фамилия:")
-ent_surname.pack(side=tkinter.RIGHT)
-lbl_surname.pack()
-frame_8.pack()
+ent_surname = tkinter.Entry(master=frame_2)
+lbl_surname = tkinter.Label(master=frame_1, text="Фамилия:")
+ent_surname.pack(anchor="w")
+lbl_surname.pack(anchor="e")
 
-ent_address1 = tkinter.Entry(master=frame_2, width=20)
-lbl_address1 = tkinter.Label(master=frame_2, text="Адрес 1:")
-ent_address1.pack(side=tkinter.RIGHT)
-lbl_address1.pack()
-frame_2.pack()
+ent_address1 = tkinter.Entry(master=frame_2)
+lbl_address1 = tkinter.Label(master=frame_1, text="Адрес 1:")
+ent_address1.pack(anchor="w")
+lbl_address1.pack(anchor="e")
 
-ent_address2 = tkinter.Entry(master=frame_3, width=20)
-lbl_address2 = tkinter.Label(master=frame_3, text="Адрес 2:")
-ent_address2.pack(side=tkinter.RIGHT)
-lbl_address2.pack()
-frame_3.pack()
+ent_address2 = tkinter.Entry(master=frame_2)
+lbl_address2 = tkinter.Label(master=frame_1, text="Адрес 2:")
+ent_address2.pack(anchor="w")
+lbl_address2.pack(anchor="e")
 
-ent_city = tkinter.Entry(master=frame_4, width=20)
-lbl_city = tkinter.Label(master=frame_4, text="Город:")
-ent_city.pack(side=tkinter.RIGHT)
-lbl_city.pack()
-frame_4.pack()
+ent_city = tkinter.Entry(master=frame_2)
+lbl_city = tkinter.Label(master=frame_1, text="Город:")
+ent_city.pack(anchor="w")
+lbl_city.pack(anchor="e")
 
-ent_reg = tkinter.Entry(master=frame_5, width=20)
-lbl_reg = tkinter.Label(master=frame_5, text="Регион:")
-ent_reg.pack(side=tkinter.RIGHT)
-lbl_reg.pack()
-frame_5.pack()
+ent_reg = tkinter.Entry(master=frame_2)
+lbl_reg = tkinter.Label(master=frame_1, text="Регион:")
+ent_reg.pack(anchor="w")
+lbl_reg.pack(anchor="e")
 
-ent_index = tkinter.Entry(master=frame_6, width=20)
-lbl_index = tkinter.Label(master=frame_6, text="Почтовый индекс:")
-ent_index.pack(side=tkinter.RIGHT)
-lbl_index.pack()
-frame_6.pack()
+ent_index = tkinter.Entry(master=frame_2)
+lbl_index = tkinter.Label(master=frame_1, text="Почтовый индекс:")
+ent_index.pack(anchor="w")
+lbl_index.pack(anchor="e")
 
-ent_country = tkinter.Entry(master=frame_7, width=20)
-lbl_country = tkinter.Label(master=frame_7, text="Страна:")
-ent_country.pack(side=tkinter.RIGHT)
-lbl_country.pack()
-frame_7.pack()
+ent_country = tkinter.Entry(master=frame_2)
+lbl_country = tkinter.Label(master=frame_1, text="Страна:")
+ent_country.pack(anchor="w")
+lbl_country.pack(anchor="e")
 
-info = open("info.json", "w")
+frame_3.pack(expand=True, side=tkinter.BOTTOM)  # button
+frame_1.pack(side=tkinter.LEFT)  # label
+frame_2.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)  # enter
+
+send_list = [ent_name, lbl_name, ent_surname, lbl_surname,
+             ent_address1, lbl_address1, ent_city, lbl_city,
+             ent_reg, lbl_reg, ent_index, lbl_index,
+             ent_country, lbl_country]
 
 
 def send_command():
-    if (ent_name.get() == ""
-            or ent_surname.get() == ""
-            or ent_address1.get() == ""
-            or ent_city.get() == ""
-            or ent_reg.get() == ""
-            or ent_index.get() == ""
-            or ent_country.get() == ""):
-        window.title(string="Не все поля заполнены!")
-    else:
+    a_true = True
+    for i in send_list:
+        if (send_list.index(i)+1) % 2 != 0:
+            if i.get() == "":
+                send_list[(send_list.index(i)+1)]["fg"] = "red"
+                window.title(string="Не все поля заполнены!")
+                a_true = False
+            else:
+                send_list[(send_list.index(i) + 1)]["fg"] = "black"
+    if a_true:
+        info = open("info.json", "w")
         info_list = [" Name:", ent_name.get(),
                      " Surname: ", ent_surname.get(),
                      " Address1: ", ent_address1.get(),
@@ -83,15 +80,14 @@ def send_command():
                      " Region:", ent_reg.get(),
                      " Index:", ent_index.get(),
                      " Country:", ent_country.get()]
-        for i in info_list:
-            info.write(str(i))
-        window.title(string=ent_name.get()+", Ваши данные успешно отправлены")
+        for b in info_list:
+            info.write(str(b))
+        window.title(string=ent_name.get() + ", Ваши данные успешно отправлены")
 
 
-button_send = tkinter.Button(master=frame_9, text="Отправить", command=send_command)
-button_clear = tkinter.Button(master=frame_9, text="Очистить")
+button_send = tkinter.Button(master=frame_3, text="Отправить", command=send_command)
+button_clear = tkinter.Button(master=frame_3, text="Очистить")
 button_clear.pack(side=tkinter.LEFT)
 button_send.pack(side=tkinter.RIGHT)
-frame_9.pack()
 
 window.mainloop()
